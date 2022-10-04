@@ -1,0 +1,1 @@
+C:\Users\jespe\OneDrive\ -\ NEXT\ Uddannelse\ København\Dokumenter\Programmering\alt_rust\fisix\target\debug\fisix.exe: C:\Users\jespe\OneDrive\ -\ NEXT\ Uddannelse\ København\Dokumenter\Programmering\alt_rust\fisix\src\main.rs
