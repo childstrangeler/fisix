@@ -27,6 +27,8 @@ fn main() {
         (WIDTH / 2 + 80, HEIGHT),
     );
 
+    buffer.rect(ROCK, (0, HEIGHT - 10), (WIDTH, HEIGHT));
+
     let mut window = Window::new(
         "Fisix - ESC to exit",
         WIDTH,
