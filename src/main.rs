@@ -11,7 +11,7 @@ const WIDTH: usize = 640;
 const HEIGHT: usize = 360;
 
 fn main() {
-    let mut buffer = cellular::container();
+    let mut buffer = container();
 
     buffer.rect(WATER, (0, 0), (WIDTH, 75));
 
