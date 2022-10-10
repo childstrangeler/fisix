@@ -1,4 +1,7 @@
-use crate::{konstanter::BAGGRUND, liquid, HEIGHT, WIDTH};
+use crate::{
+    konstanter::{BAGGRUND, ROCK},
+    liquid, HEIGHT, WIDTH,
+};
 
 pub struct Container(Vec<u32>);
 
@@ -19,6 +22,16 @@ impl std::ops::Index<(usize, usize)> for Container {
 impl std::ops::IndexMut<(usize, usize)> for Container {
     fn index_mut(&mut self, i: (usize, usize)) -> &mut Self::Output {
         &mut self.0[i.0 + i.1 * WIDTH]
+    }
+}
+
+impl Container {
+    pub fn rect(&mut self, color: u32, a: (usize, usize), b: (usize, usize)) {
+        for x in a.0..b.0 {
+            for y in a.1..b.1 {
+                self[(x, y)] = color;
+            }
+        }
     }
 }
 

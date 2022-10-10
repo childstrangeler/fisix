@@ -3,6 +3,8 @@ mod cellular;
 mod konstanter;
 mod liquid;
 use cellular::container;
+use konstanter::ROCK;
+use liquid::WATER;
 use minifb::{Key, Window, WindowOptions};
 
 const WIDTH: usize = 640;
@@ -11,9 +13,19 @@ const HEIGHT: usize = 360;
 fn main() {
     let mut buffer = cellular::container();
 
-    for x in 0..WIDTH {
-        buffer[(x, 0)] = liquid::WATER;
-    }
+    buffer.rect(WATER, (0, 0), (WIDTH, 75));
+
+    buffer.rect(
+        ROCK,
+        (WIDTH / 2, HEIGHT / 2),
+        (WIDTH / 2 + 100, HEIGHT / 2 + 100),
+    );
+
+    buffer.rect(
+        ROCK,
+        (WIDTH / 2 - 20, HEIGHT / 2 + 120),
+        (WIDTH / 2 + 80, HEIGHT),
+    );
 
     let mut window = Window::new(
         "Fisix - ESC to exit",
