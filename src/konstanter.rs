@@ -8,3 +8,6 @@ pub const ROCK: u32 = 0x00555348;
 
 //en konstant der holder vandfarven
 pub const WATER: u32 = 0x000e97ff;
+
+//en konstant der holder spiller farven
+pub const PLAYER: u32 = 0x00ffae78;

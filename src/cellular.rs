@@ -1,4 +1,11 @@
-use crate::{konstanter::BAGGRUND, liquid, HEIGHT, WIDTH};
+use std::vec;
+
+use crate::{
+    konstanter::BAGGRUND,
+    liquid,
+    math::{ToVec, Vec2d},
+    HEIGHT, WIDTH,
+};
 
 pub struct Container(Vec<u32>);
 
@@ -9,25 +16,37 @@ impl std::ops::Deref for Container {
     }
 }
 
-impl std::ops::Index<(usize, usize)> for Container {
+impl<T: Into<(usize, usize)>> std::ops::Index<T> for Container {
     type Output = u32;
-    fn index(&self, i: (usize, usize)) -> &u32 {
+    fn index(&self, i: T) -> &u32 {
+        let i = i.into();
         &self.0[i.0 + i.1 * WIDTH]
     }
 }
 
-impl std::ops::IndexMut<(usize, usize)> for Container {
-    fn index_mut(&mut self, i: (usize, usize)) -> &mut Self::Output {
+impl<T: Into<(usize, usize)>> std::ops::IndexMut<T> for Container {
+    fn index_mut(&mut self, i: T) -> &mut Self::Output {
+        let i = i.into();
         &mut self.0[i.0 + i.1 * WIDTH]
     }
 }
 
 //her laves ren funktion der tegner et rektangel af en farve som f.eks. ROCK eller WATER, og af to hjørner (a, b)
 impl Container {
-    pub fn rect(&mut self, color: u32, a: (usize, usize), b: (usize, usize)) {
-        for x in a.0..b.0 {
-            for y in a.1..b.1 {
-                self[(x, y)] = color;
+    pub fn rect(&mut self, color: u32, a: Vec2d, b: Vec2d) {
+        for x in a.x..b.x {
+            for y in a.y..b.y {
+                self[(x, y).vec()] = color;
+            }
+        }
+    }
+
+    pub fn circle(&mut self, color: u32, center: Vec2d, radius: usize) {
+        for x in center.x as usize - radius..center.x as usize + radius {
+            for y in center.y as usize - radius..center.y as usize + radius {
+                if center.dist(&(x, y).into()) <= radius {
+                    self[(x, y)] = color;
+                }
             }
         }
     }
