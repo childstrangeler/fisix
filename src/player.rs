@@ -1,4 +1,5 @@
-use crate::konstanter::{BAGGRUND, PLAYER};
+use crate::cellular::Container;
+use crate::konstanter::{BAGGRUND, PLAYER, ROCK};
 use minifb::Key;
 
 pub struct Player {
@@ -16,5 +17,13 @@ impl Player {
             Key::S => self.y += 4,
             key => panic!("G du trykker ikke på noget{key:?}"),
         }
+
+        /*
+            if self.x + 1 != BAGGRUND as usize {
+                self.x += 0
+            } else if self.y + 1 != BAGGRUND as usize {
+                self.y += 0
+            }
+        */
     }
 }
