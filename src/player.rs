@@ -1,4 +1,4 @@
-use crate::konstanter::PLAYER;
+use crate::konstanter::{BAGGRUND, PLAYER};
 use minifb::Key;
 
 pub struct Player {

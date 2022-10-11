@@ -5,7 +5,7 @@ mod liquid;
 mod math;
 mod player;
 use cellular::container;
-use konstanter::{ROCK, WATER};
+use konstanter::{BAGGRUND, ROCK, WATER};
 use minifb::{Key, Window, WindowOptions};
 use player::Player;
 //use player::match_key;
