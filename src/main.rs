@@ -34,10 +34,6 @@ fn main() {
     //her fyldes de nederste ti pixels hen ad hele skærmen med sten
     buffer.rect(ROCK, (0, HEIGHT - 10), (WIDTH, HEIGHT));
 
-    //trekant making, det fungerer ikke
-    /*
-        buffer.tri(ROCK, (1, 200), (1, 250), (30, 250));
-    */
     let mut window = Window::new(
         "Fisix - ESC to exit",
         WIDTH,
