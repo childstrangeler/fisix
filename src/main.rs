@@ -3,32 +3,41 @@ mod cellular;
 mod konstanter;
 mod liquid;
 use cellular::container;
-use konstanter::ROCK;
-use liquid::WATER;
+use konstanter::{ROCK, WATER};
 use minifb::{Key, Window, WindowOptions};
 
 const WIDTH: usize = 640;
 const HEIGHT: usize = 360;
 
+/*
+Forsøger at lave en simpel pixelbaseret physics engine, måske med en idé om at tage det videre
+til en form for Noita inspireret spil.
+*/
+
 fn main() {
     let mut buffer = container();
 
+    //her fyldes de øverste 75 pixels over hele skærmen med vand
     buffer.rect(WATER, (0, 0), (WIDTH, 75));
-
+    //her sættes en flyvende sten på skærmen
     buffer.rect(
         ROCK,
         (WIDTH / 2, HEIGHT / 2),
         (WIDTH / 2 + 100, HEIGHT / 2 + 100),
     );
-
+    //her sættes en sten under den flyvende sten
     buffer.rect(
         ROCK,
         (WIDTH / 2 - 20, HEIGHT / 2 + 120),
         (WIDTH / 2 + 80, HEIGHT),
     );
-
+    //her fyldes de nederste ti pixels hen ad hele skærmen med sten
     buffer.rect(ROCK, (0, HEIGHT - 10), (WIDTH, HEIGHT));
 
+    //trekant making, det fungerer ikke
+    /*
+        buffer.tri(ROCK, (1, 200), (1, 250), (30, 250));
+    */
     let mut window = Window::new(
         "Fisix - ESC to exit",
         WIDTH,
