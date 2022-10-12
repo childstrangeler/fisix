@@ -4,10 +4,13 @@ mod konstanter;
 mod liquid;
 mod math;
 mod player;
+use std::clone;
+
 use cellular::container;
 use konstanter::{ROCK, WATER};
 use minifb::{Key, Scale, Window, WindowOptions};
 use player::Player;
+use rand::random;
 //use player::match_key;
 
 const WIDTH: usize = 640;
@@ -75,6 +78,17 @@ fn main() {
         for pressed in window.get_keys().iter() {
             player.match_key(pressed);
         }
+        let vandfarve = [
+            0x003facff, 0x0037a9ff, 0x002ea5ff, 0x0026a2ff, 0x001e9eff, 0x00169bff, 0x000e97ff,
+            0x000694ff, 0x000090fc, 0x00008bf4, 0x000087ec,
+        ];
+        buffer.texture(&|pixel: u32| {
+            if pixel == WATER {
+                vandfarve[rand::random::<usize>() % vandfarve.len()]
+            } else {
+                pixel
+            }
+        });
 
         buffer.update();
         window.update_with_buffer(&buffer, WIDTH, HEIGHT).unwrap();

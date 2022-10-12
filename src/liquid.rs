@@ -17,7 +17,7 @@ use crate::{
 
 pub fn liquid(container: &mut Container) {
     let mut has_move = std::collections::HashSet::new();
-    const FLOW_DIRECTIONS: &[(isize, isize)] = &[(0, 1), (1, 1), (1, 1), (2, 1)];
+    const FLOW_DIRECTIONS: &[(isize, isize)] = &[(0, 1), (1, 0), (1, 1)];
     for y in 1..HEIGHT - 1 {
         for mut x in 1..WIDTH - 1 {
             if rand::random() {
