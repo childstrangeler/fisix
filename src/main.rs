@@ -71,22 +71,31 @@ fn main() {
 
     while window.is_open() && !window.is_key_down(Key::Escape) {
         // We unwrap here as we want this code to exit if it fails. Real applications may want to handle this in a different way
+        if player.x + player.size >= WIDTH {
+            player.x = WIDTH - 1 - player.size
+        }
+        if player.y + player.size >= WIDTH {
+            player.y = WIDTH - 1 - player.size
+        }
+        if player.y <= 0 {
+            player.y = 4
+        }
+        if player.x <= 0 {
+            player.x = 50
+        }
+
         buffer.rect(
             crate::konstanter::PLAYER,
             (player.x, player.y).into(),
-            (player.x + player.size, player.y + player.size + 10).into(),
+            (player.x + player.size, player.y + player.size).into(),
         );
         for pressed in window.get_keys().iter() {
             player.match_key(pressed);
         }
-        let vandfarve = [
-            0x003facff, 0x0037a9ff, 0x002ea5ff, 0x0026a2ff, 0x001e9eff, 0x00169bff, 0x000e97ff,
-            0x000694ff, 0x000090fc, 0x00008bf4, 0x000087ec,
-        ];
+
         buffer.texture(&|n, pixel: u32| {
             if pixel == WATER {
                 assets::WATER_IMAGE[n]
-                // vandfarve[rand::random::<usize>() % vandfarve.len()]
             } else {
                 pixel
             }
