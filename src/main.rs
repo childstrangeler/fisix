@@ -1,10 +1,10 @@
 extern crate minifb;
+mod assets;
 mod cellular;
 mod konstanter;
 mod liquid;
 mod math;
 mod player;
-mod assets;
 use std::clone;
 
 use cellular::container;
@@ -83,9 +83,10 @@ fn main() {
             0x003facff, 0x0037a9ff, 0x002ea5ff, 0x0026a2ff, 0x001e9eff, 0x00169bff, 0x000e97ff,
             0x000694ff, 0x000090fc, 0x00008bf4, 0x000087ec,
         ];
-        buffer.texture(&|pixel: u32| {
+        buffer.texture(&|n, pixel: u32| {
             if pixel == WATER {
-                vandfarve[rand::random::<usize>() % vandfarve.len()]
+                assets::WATER_IMAGE[n]
+                // vandfarve[rand::random::<usize>() % vandfarve.len()]
             } else {
                 pixel
             }
