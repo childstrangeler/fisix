@@ -6,7 +6,7 @@ mod math;
 mod player;
 use cellular::container;
 use konstanter::{ROCK, WATER};
-use minifb::{Key, Window, WindowOptions};
+use minifb::{Key, Scale, Window, WindowOptions};
 use player::Player;
 //use player::match_key;
 
@@ -55,7 +55,10 @@ fn main() {
         "Fisix - ESC to exit",
         WIDTH,
         HEIGHT,
-        WindowOptions::default(),
+        WindowOptions {
+            scale: Scale::FitScreen,
+            ..Default::default()
+        },
     )
     .unwrap();
 

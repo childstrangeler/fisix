@@ -13,15 +13,8 @@ impl Player {
             Key::A => self.x -= 4,
             Key::W => self.y -= 4,
             Key::S => self.y += 4,
+
             _ => {}
         }
-
-        /*
-            if self.x + 1 != BAGGRUND as usize {
-                self.x += 0
-            } else if self.y + 1 != BAGGRUND as usize {
-                self.y += 0
-            }
-        */
     }
 }
