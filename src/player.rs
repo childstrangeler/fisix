@@ -1,5 +1,3 @@
-use crate::cellular::Container;
-use crate::konstanter::{BAGGRUND, PLAYER, ROCK};
 use minifb::Key;
 
 pub struct Player {

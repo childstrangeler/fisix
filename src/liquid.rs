@@ -11,7 +11,7 @@ Både andre vand pixels og solide pixels blokkere en given vand pixel i at rykke
 use crate::{
     cellular::Container,
     konstanter::{BAGGRUND, WATER},
-    math::{ToVec, Vec2d},
+    math::ToVec,
     HEIGHT, WIDTH,
 };
 
