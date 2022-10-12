@@ -4,6 +4,7 @@ mod konstanter;
 mod liquid;
 mod math;
 mod player;
+mod assets;
 use std::clone;
 
 use cellular::container;

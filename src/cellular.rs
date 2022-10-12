@@ -54,9 +54,9 @@ impl Container {
         }
     }
 
-    pub fn texture(&mut self, texture: &dyn Fn(u32) -> u32) {
+    pub fn texture(&mut self, texture: &dyn Fn(usize, u32) -> u32) {
         for n in 0..WIDTH * HEIGHT {
-            self.draw_layer[n] = texture(self.cell_layer[n])
+            self.draw_layer[n] = texture(n, self.cell_layer[n])
         }
     }
 }
