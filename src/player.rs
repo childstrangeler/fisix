@@ -13,7 +13,7 @@ impl Player {
             Key::A => self.x -= 4,
             Key::W => self.y -= 4,
             Key::S => self.y += 4,
-            key => panic!("G du trykker ikke på noget{key:?}"),
+            _ => {}
         }
 
         /*
