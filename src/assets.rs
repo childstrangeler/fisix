@@ -4,7 +4,7 @@ use crate::{WIDTH, HEIGHT};
 
 lazy_static! {
     pub static ref WATER_IMAGE: Vec<u32> = {
-        let mut img = image::open("tests/images/jpg/progressive/cat.jpg").unwrap();
+        let mut img = image::open("assets/water.jpg").unwrap();
         let subimg = imageops::crop(&mut img, 0, 0, WIDTH as u32, HEIGHT as u32).to_image();
         let mut buffer = vec![0; WIDTH*HEIGHT];
 
