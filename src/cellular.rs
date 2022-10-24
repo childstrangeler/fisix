@@ -10,6 +10,7 @@ use crate::{
 pub struct Container {
     cell_layer: Vec<u32>,
     draw_layer: Vec<u32>,
+    force_layer: Vec<Vec2d>,
 }
 
 impl std::ops::Deref for Container {
@@ -65,6 +66,7 @@ pub fn container() -> Container {
     Container {
         cell_layer: vec![BAGGRUND; HEIGHT * WIDTH],
         draw_layer: vec![BAGGRUND; HEIGHT * WIDTH],
+        force_layer: vec![(0, 0).into(); HEIGHT * WIDTH],
     }
 }
 
