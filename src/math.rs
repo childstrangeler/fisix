@@ -16,6 +16,7 @@ impl Vec2d {
     }
 }
 
+//ToVec skal bare fucke af på et tidspunkt...
 pub trait ToVec {
     fn vec(self) -> Vec2d;
 }
@@ -81,14 +82,22 @@ impl_op_assign!(MulAssign, mul_assign, *=);
 impl_op_assign!(SubAssign, sub_assign, -=);
 impl_op_assign!(DivAssign, div_assign, /=);
 
-impl From<(usize, usize)> for Vec2d {
-    fn from(from: (usize, usize)) -> Self {
-        Self {
-            x: from.0 as isize,
-            y: from.1 as isize,
+macro_rules! ikke_min_type {
+    ($type:ty) => {
+        impl From<($type, $type)> for Vec2d {
+            fn from(from: ($type, $type)) -> Self {
+                Self {
+                    x: from.0 as isize,
+                    y: from.1 as isize,
+                }
+            }
         }
-    }
+    };
 }
+
+ikke_min_type!(isize);
+ikke_min_type!(usize);
+ikke_min_type!(i32);
 
 impl Into<(usize, usize)> for Vec2d {
     fn into(self) -> (usize, usize) {

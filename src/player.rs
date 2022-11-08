@@ -1,9 +1,9 @@
 use minifb::Key;
 
 pub struct Player {
-    pub x: usize,
-    pub y: usize,
-    pub size: usize,
+    pub x: isize,
+    pub y: isize,
+    pub size: isize,
 }
 
 impl Player {

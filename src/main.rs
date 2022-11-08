@@ -5,7 +5,6 @@ mod konstanter;
 mod liquid;
 mod math;
 mod player;
-use std::clone;
 
 use cellular::container;
 use konstanter::{ROCK, WATER};
@@ -70,18 +69,21 @@ fn main() {
     window.limit_update_rate(Some(std::time::Duration::from_micros(16600)));
 
     while window.is_open() && !window.is_key_down(Key::Escape) {
-        // We unwrap here as we want this code to exit if it fails. Real applications may want to handle this in a different way
-        if player.x + player.size >= WIDTH {
-            player.x = WIDTH - 1 - player.size
+        for pressed in window.get_keys().iter() {
+            player.match_key(pressed);
         }
-        if player.y + player.size >= WIDTH {
-            player.y = WIDTH - 1 - player.size
+
+        if player.x + player.size >= WIDTH as isize {
+            player.x = WIDTH as isize - 1 - player.size
+        }
+        if player.y + player.size >= HEIGHT as isize {
+            player.y = HEIGHT as isize - 1 - player.size
         }
         if player.y <= 0 {
             player.y = 4
         }
         if player.x <= 0 {
-            player.x = 50
+            player.x = 4
         }
 
         buffer.rect(
@@ -89,9 +91,6 @@ fn main() {
             (player.x, player.y).into(),
             (player.x + player.size, player.y + player.size).into(),
         );
-        for pressed in window.get_keys().iter() {
-            player.match_key(pressed);
-        }
 
         buffer.texture(&|n, pixel: u32| {
             if pixel == WATER {
